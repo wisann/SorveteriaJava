@@ -1,24 +1,16 @@
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JEditorPane;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
-import javax.swing.JTabbedPane;
-import java.awt.Font;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import java.awt.Color;
-import javax.swing.JButton;
-import java.awt.Window.Type;
-import java.awt.event.ActionListener;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class TelaApresentacao extends JFrame {
 
@@ -137,17 +129,47 @@ public class TelaApresentacao extends JFrame {
 		
 		btnCalcular = new JButton("Calcular");
 		btnCalcular.addActionListener(new ActionListener() {
+			int qnt1;
+			int qnt2;
+			int qnt3;
+			int qnt4;
+			Double preco1 ;
+			Double preco2;
+			Double preco3;
+			Double preco4;
 			public void actionPerformed(ActionEvent e) {
-				int qnt1 = Integer.parseInt(txtQnt1.getText());
-				int qnt2 = Integer.parseInt(txtQnt2.getText());
-				int qnt3 = Integer.parseInt(txtQnt3.getText());
-				int qnt4 = Integer.parseInt(txtQnt4.getText());
+				try {
+				     qnt1 = Integer.parseInt(txtQnt1.getText());
+				     qnt2 = Integer.parseInt(txtQnt2.getText());
+				     qnt3 = Integer.parseInt(txtQnt3.getText());
+				     qnt4 = Integer.parseInt(txtQnt4.getText());
+				        
+				     preco1 = Double.parseDouble(txtPreco1.getText());
+				     preco2 = Double.parseDouble(txtPreco2.getText());
+				     preco3 = Double.parseDouble(txtPreco3.getText());
+				     preco4 = Double.parseDouble(txtPreco4.getText());
+				     
+				  } catch (java.lang.NumberFormatException eo) {
+				     
+				     JOptionPane.showMessageDialog(null, "Digite os valores corretamente.");
+				        
+				     
+				     int option = JOptionPane.showConfirmDialog(null, "Deseja tentar novamente?");
+				     if (option != JOptionPane.YES_OPTION) {
+				     
+				     } else {
+				        txtQnt1.setText("");
+				        txtQnt2.setText("");
+				        txtQnt3.setText("");
+				        txtQnt4.setText("");
+				        txtPreco1.setText("");
+				        txtPreco2.setText("");
+				        txtPreco3.setText("");
+				        txtPreco4.setText("");
+				        }
+				    }
 				
-				Double preco1 = Double.parseDouble(txtPreco1.getText());
-				Double preco2 = Double.parseDouble(txtPreco2.getText());
-				Double preco3 = Double.parseDouble(txtPreco3.getText());
-				Double preco4 = Double.parseDouble(txtPreco4.getText());
-			
+
 				Double total = ((qnt1 * preco1)) + ((qnt2 * preco2)) + ((qnt3 * preco3)) + ((qnt4 * preco4));
 				txtTotal.setText(String.valueOf(total));
 				
